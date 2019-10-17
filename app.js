@@ -9,7 +9,11 @@ var app = express();
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
-var dev_db_url = 'mongodb://someuser:abcd1234@ds123619.mlab.com:23619/productstutorial';
+let mongoUser = process.env.MONGODB_USER;
+let mongoPass = process.env.MONGODB_PASSWORD;
+let databaseServiceName = process.env.DATABASE_SERVICE_NAME;
+let mongoDatabase = process.env.MONGODB_DATABASE;
+var dev_db_url = `mongodb://${mongoUser}:${mongoPass}@${databaseServiceName}:23619/${mongoDatabase}`;
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
