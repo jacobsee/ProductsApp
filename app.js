@@ -23,7 +23,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/products', product);
-
+app.use('/', function (req, res){
+    res.send("Greetings from my Node.JS app - I can connect to my Mongo database!");
+})
 var port = 8080;
 
 app.listen(port, () => {
